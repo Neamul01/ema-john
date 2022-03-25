@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cart from './Cart/Cart';
 import Product from './Product/Product';
 import './Shop.css'
 
@@ -10,13 +11,16 @@ const Shop = () => {
         fetch('products.json').then(res => res.json()).then(data => setProducts(data))
     }, []);
 
-    // let newBalance;
+    let newBalance = 0;
     const addToCart = (product) => {
         const { price } = product;
-        console.log(product.price, price)
         const newCart = [...cart, product];
         setCart(newCart);
+
+        newBalance = newBalance + (+price);
     }
+    console.log(newBalance)
+
 
     return (
         <div className='shop-container'>
@@ -33,9 +37,10 @@ const Shop = () => {
 
             </div>
             <div className="cart-container">
-                <h2>This is cart container</h2>
-                <h3>Selected Items: {cart.length}</h3>
-                {/* <h3>Balance:{newBalance}</h3> */}
+                <Cart
+                    cart={cart}
+                    newBalance={newBalance}
+                ></Cart>
             </div>
         </div>
     );
