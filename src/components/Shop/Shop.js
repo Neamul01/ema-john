@@ -11,15 +11,10 @@ const Shop = () => {
         fetch('products.json').then(res => res.json()).then(data => setProducts(data))
     }, []);
 
-    let newBalance = 0;
     const addToCart = (product) => {
-        const { price } = product;
         const newCart = [...cart, product];
         setCart(newCart);
-
-        newBalance = newBalance + (+price);
     }
-    console.log(newBalance)
 
 
     return (
@@ -39,7 +34,6 @@ const Shop = () => {
             <div className="cart-container">
                 <Cart
                     cart={cart}
-                    newBalance={newBalance}
                 ></Cart>
             </div>
         </div>
