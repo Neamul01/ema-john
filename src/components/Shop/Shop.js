@@ -4,6 +4,9 @@ import Cart from './Cart/Cart';
 import Product from './Product/Product';
 import useProducts from '../../hooks/useProducts';
 import './Shop.css'
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faRemove } from '@fortawesome/free-solid-svg-icons';
 
 const Shop = () => {
     const [products, setProducts] = useProducts();
@@ -57,9 +60,10 @@ const Shop = () => {
 
             </div>
             <div className="cart-container">
-                <Cart
-                    cart={cart}
-                ></Cart>
+                <Cart cart={cart}>
+                    <button className='cart-clear-btn'><span>Clear Cart</span><FontAwesomeIcon icon={faRemove}></FontAwesomeIcon></button>
+                    <Link to='/review'><button className='cart-review-btn'><span>Review Order</span><FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></button></Link>
+                </Cart>
             </div>
         </div>
     );
